@@ -15,12 +15,15 @@ Usage: python blastquery2ids.py \<infile\> \<outfile\>
 
 Usage: python blastsub2ids.py \<infile\> [\<infile 2\> ... \<infile n\>]
 
+**matepair.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads which have no partner in that particular cluster ('Singlets'). **maitepair.R** works only if (1) RE was used on paired end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character which must be 'l' and 'r'.
+
+Usage: Open the script in an R editor and execute the whole code. You will be asked to chose a file. The file chosen *must* be a GL file (such as found in the cluster folders).
 
 ###coming soon...
 
 **custom2ids.py** creates an .ids file from a RepeatMasker output file. This is useful to indicate the position of reads matching a custom repeat database.
 
-**matepair.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads who have no partner in one particular cluster. I requires the R library 'igraph' to be installed. **maitepair.R** works only if (1) RE was used on paired end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character which must be 'l' and 'r'.
+
 
 
 
