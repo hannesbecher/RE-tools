@@ -1,11 +1,11 @@
 # RE-tools
 
 
-This is a collection of scripts to process the output files of RepeatExplorer (RE). RE is a pipeline to analyse the repetitive genome content using low coverage high throughput sequencing data (Novák et al. 2010, Novak et al. 2013)
+This is a collection of scripts to process the output files of RepeatExplorer (RE). RE is a pipeline to analyse the repetitive genome content using low coverage high throughput sequencing data (Novák et al. 2010, Novak et al. 2013).
 
 ## Files
 
-###ready to test
+###Creation of .ids files to import into SeqGrapheR
 
 **blastquery2ids.py** generates a multiple .ids file from a TAB-separated BLAST output table (output format 6). It assumes one cluster's reads have been blasted against a database. That means, in the blast table, the read names appear in column 1 and the subjects in column 2.
 
@@ -15,15 +15,15 @@ Usage: python blastquery2ids.py \<infile\> \<outfile\>
 
 Usage: python blastsub2ids.py \<infile\> [\<infile 2\> ... \<infile n\>]
 
-**matepair.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads which have no partner in that particular cluster ('Singlets'). **maitepair.R** works only if (1) RE was used on paired end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character which must be 'l' and 'r'.
+**RM2ids.py** creates an .ids file from a RepeatMasker (RM) output file (extension .fas.out). This is useful to indicate the position of reads matching Repbase or a custom repeat database. RM output files are fixed width tables which makes them complicated to process in an automated manner. This script was tested on several files. However if it is failing on one of your RM output files please let me know and send a copy of the file.
+
+Usage: python RM2ids.py \<infile\>
+
+###Cluster graphs in R
+
+**matepair.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads which have no partner in that particular cluster ('Singlets'). **maitepair.R** works only if (1) RE was used on paired end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character which must be 'l' and 'r'. Also, for this script to work, the library 'igraph' must not be loaded in R.
 
 Usage: Open the script in an R editor and execute the whole code. You will be asked to chose a file. The file chosen *must* be a GL file (such as found in the cluster folders).
-
-###coming soon...
-
-**custom2ids.py** creates an .ids file from a RepeatMasker output file. This is useful to indicate the position of reads matching a custom repeat database.
-
-
 
 
 
