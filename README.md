@@ -21,9 +21,9 @@ Usage: python RM2ids.py \<infile\>
 
 ###Cluster graphs in R
 
-**matepair.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads which have no partner in that particular cluster ('Singlets'). **maitepair.R** works only if (1) RE was used on paired end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character which must be 'l' and 'r'. Also, for this script to work, the library 'igraph' must not be loaded in R.
+**pairshow.R** is an R script to highlight the position of read pairs in a RE cluster. It also indicates the position of reads which have no partner in that particular cluster ('Singlets'). **pairshow.R** works only if (1) RE was used on paired-end sequencing data and (2) RE was told to rename the reads. The names of mate reads must be equal except of their last character. Also, for this script to work, the library 'igraph' should not be loaded in R (which normally is not the case anyway). The 3D version requires a recent version of the package 'rgl' which can be installed typing "install.packages('rgl', dependencies=T)".
 
-Usage: Open the script in an R editor and execute the whole code. You will be asked to chose a file. The file chosen *must* be a GL file (such as found in the cluster folders).
+Usage: Open the script in an R editor and execute the whole code. You can then run pairshow2d() or pairshow3d(). Either way, you will be prompted to select a file. Pick a GL file (such as found in the cluster folders).
 
 
 
