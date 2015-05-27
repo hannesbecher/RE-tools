@@ -9,20 +9,23 @@
 ## The latter requires a recent version of the package 'rgl'.
 ####################
 
-library(rgl)
 
-#setwd('/home/hannes/6in1Mnew/seqClust/clustering/clusters/')
+# You can set the path to you cluster folder here:
+
+#setwd('/home/hannes/hardysync/6in1Mnew/seqClust/clustering/clusters/')
+
+library(rgl)
 
 pairshow2d <- function() {
   load(file.choose())
   
   data<-data.frame(GL$L,unlist((GL$G)[[9]][[3]]))
-  names(data)<-c('x', 'y', 'z1', 'z2', 'z3', 'z4', 'name')
+  names(data)<-c('x', 'y', paste0('z', seq(1, ncol(data)-3)), 'name')
   pair<-unlist(lapply(as.character(data$name), function(x) substr(x, 1, nchar(x)-1)))
   mate<-unlist(lapply(as.character(data$name), function(x) substr(x, nchar(x), nchar(x))))
     
   data<-data.frame(data, pair, mate, rep('black', nrow(data)), stringsAsFactors=F)
-  names(data)<-c('x', 'y', 'z1', 'z2', 'z3', 'z4', 'name','pair','mate', 'col')
+  names(data)<-c('x', 'y', paste0('z', seq(1, ncol(data)-6)), 'name', 'pair','mate', 'col')
   
   paired<-data$pair[duplicated(data$pair)]
   pairs<-data[data$pair %in% paired,]
@@ -53,22 +56,16 @@ pairshow2d <- function() {
   
 }
 
-
-
-
 pairshow3d <- function() {
   load(file.choose())
   
-  
   data<-data.frame(GL$L,unlist((GL$G)[[9]][[3]]))
-  names(data)<-c('x', 'y', 'z1', 'z2', 'z3', 'z4', 'name')
+  names(data)<-c('x', 'y', paste0('z', seq(1, ncol(data)-3)), 'name')
   pair<-unlist(lapply(as.character(data$name), function(x) substr(x, 1, nchar(x)-1)))
   mate<-unlist(lapply(as.character(data$name), function(x) substr(x, nchar(x), nchar(x))))
   
-  
   data<-data.frame(data, pair, mate, rep('black', nrow(data)), stringsAsFactors=F)
-  
-  names(data)<-c('x', 'y', 'z1', 'z2', 'z3', 'z4', 'name','pair','mate', 'col')
+  names(data)<-c('x', 'y', paste0('z', seq(1, ncol(data)-6)), 'name', 'pair','mate', 'col')
   
   paired<-data$pair[duplicated(data$pair)]
   pairs<-data[data$pair %in% paired,]
@@ -81,18 +78,27 @@ pairshow3d <- function() {
   no_in_pairs<-(nrow(pairs)/nrow(data)*100)
   print (paste(no_reads, 'reads'))
   print (paste(round(no_in_pairs, digits=2), '% in pairs'))
-  
-  with(data, plot3d(x, y, z2, size=1))
-  
-  with(data[data$col=='red',] , points3d(x, y, z2, col='red'))
-  
-  segments3d(pairs[,c(1,2,4)], col='grey40')
-  
+
+  if(ncol(data) > 7){           #this is normally the case, plot with x,y, and z2
+    
+    with(data, plot3d(x, y, z2, size=1))
+    with(data[data$col=='red',] , points3d(x, y, z2, col='red'))
+    segments3d(pairs[,c(1,2,4)], col='grey40')
+    
+  } else {                    #Sometimes there are only three coordinates in a GL file
+                              #This will plot x,y, and z.
+    with(data, plot3d(x, y, z1, size=1))
+    with(data[data$col=='red',] , points3d(x, y, z1, col='red'))
+    segments3d(pairs[,c(1,2,3)], col='grey40')
+    
+  }
 }
 
+# After executing the previous code you can use pairshow2d() and pairshow3d()
+# make sure, you have NOT loaded the package igraph (which is required for SeqGrapheR).
+# If you are running SeqGrapheR, just open another instance of R (in a separate
+# terminal, in which you don't load igraph) and execute this script.
 
 #pairshow2d()
-
-
 
 #pairshow3d()
