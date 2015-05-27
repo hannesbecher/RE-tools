@@ -2,7 +2,7 @@
 
 ##EMPSEB21
 
-Consider sending you students to EMPSEB21! EMPSEB is a student-lead conference for Evolutionary Biology taking place in stirling this year. Check out http://empseb21.bio.ed.ac.uk/
+Consider sending your students to EMPSEB21! EMPSEB is a prestigeous student-lead conference for Evolutionary Biology taking place in stirling this year. It is being partly funded by ESEB. Check out http://empseb21.bio.ed.ac.uk/
 
 
 ##Introduction
