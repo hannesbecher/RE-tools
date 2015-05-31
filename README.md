@@ -1,10 +1,5 @@
 # RE-tools
 
-##EMPSEB21
-
-Consider sending your students to EMPSEB21! EMPSEB is a prestigeous student-lead conference for Evolutionary Biology taking place in stirling this year. It is being partly funded by ESEB. Check out http://empseb21.bio.ed.ac.uk/
-
-
 ##Introduction
 
 This is a collection of scripts to process the output files of RepeatExplorer (RE). RE is a pipeline to analyse the repetitive genome content using low coverage high throughput sequencing data (Novák et al. 2010, Novák et al. 2013).
