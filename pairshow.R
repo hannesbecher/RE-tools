@@ -1,11 +1,11 @@
 
 
 ####################
-## If you don't want to click your way though to the actual
-## cluster folders everytime you execute the pairshow function,
+## If you don't want to click your way through to the actual
+## cluster folders every time you execute the pairshow function,
 ## you can set the folder that contains all clusters as the working directory.
 ##
-## Than execute the whole script and run pairshow2d() or pairshow3d().
+## Then execute the whole script and run pairshow2d() or pairshow3d().
 ## The latter requires a recent version of the package 'rgl'.
 ####################
 
@@ -94,8 +94,8 @@ pairshow3d <- function() {
   }
 }
 
-# After executing the previous code you can use pairshow2d() and pairshow3d()
-# make sure, you have NOT loaded the package igraph (which is required for SeqGrapheR).
+# After executing the code you can use pairshow2d() and pairshow3d()
+# make sure you have NOT loaded the package igraph (which is required for SeqGrapheR).
 # If you are running SeqGrapheR, just open another instance of R (in a separate
 # terminal, in which you don't load igraph) and execute this script.
 
