@@ -56,7 +56,7 @@ pairshow2d <- function() {
   
 }
 
-pairshow3d <- function() {
+pairshow3d <- function(nodes=T, lines=T, singlets=T) {
   load(file.choose())
   
   data<-data.frame(GL$L,unlist((GL$G)[[9]][[3]]))
@@ -81,15 +81,41 @@ pairshow3d <- function() {
 
   if(ncol(data) > 7){           #this is normally the case, plot with x,y, and z2
     
-    with(data, plot3d(x, y, z2, size=1))
-    with(data[data$col=='red',] , points3d(x, y, z2, col='red'))
-    segments3d(pairs[,c(1,2,4)], col='grey40')
+    if(nodes==T){
+      with(data, plot3d(x, y, z2, size=1))
+    } else {
+      with(data, plot3d(x, y, z2, type='n'))
+      print("not showing nodes")
+    }
+    if(singlets==T){
+      with(data[data$col=='red',] , points3d(x, y, z2, col='red'))
+    } else {
+      print('not highlighting singlets')
+    }
+    if(lines==T){
+      segments3d(pairs[,c(1,2,4)], col='grey40')
+    } else {
+      print("not showing mate relationships")
+    }
     
   } else {                    #Sometimes there are only three coordinates in a GL file
-                              #This will plot x,y, and z.
-    with(data, plot3d(x, y, z1, size=1))
-    with(data[data$col=='red',] , points3d(x, y, z1, col='red'))
-    segments3d(pairs[,c(1,2,3)], col='grey40')
+    print("3-coordinate GL file")                #This will plot x,y, and z.
+    if(nodes==T){
+      with(data, plot3d(x, y, z1, size=1))
+    } else {
+      print("not showing nodes")
+      with(data, plot3d(x, y, z1, size=1, type='n'))
+    }
+    if(singlets==T){
+      with(data[data$col=='red',] , points3d(x, y, z1, col='red'))
+    } else {
+      print('not highlighting singlets')
+    }
+    if(lines==T){
+      segments3d(pairs[,c(1,2,3)], col='grey40')
+    } else {
+      print("not showing mate relationships")
+    }
     
   }
 }
@@ -101,4 +127,4 @@ pairshow3d <- function() {
 
 #pairshow2d()
 
-#pairshow3d()
+#pairshow3d(nodes=T, lines=T, singlets=T)
